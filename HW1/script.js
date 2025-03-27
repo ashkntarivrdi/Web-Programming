@@ -1,28 +1,3 @@
-// document.addEventListener("DOMContentLoaded", function () {
-//     const inputs = document.querySelectorAll("input");
-//     const resultElement = document.getElementById("formulaResult");
-
-//     function updateFormula() {
-//         // Get input values
-//         let fee = parseFloat(document.getElementById("fee").value) || 0;
-//         let count = parseFloat(document.getElementById("count").value) || 0;
-//         let discount = parseFloat(document.getElementById("discount").value) || 0;
-
-//         try {
-//             let result = (count * fee) - discount;
-//             resultElement.textContent = result; // Update the output
-//         } catch {
-//             resultElement.textContent = "Invalid Formula";
-//         }
-//     }
-
-//     inputs.forEach(input => {
-//         input.addEventListener("input", updateFormula);
-//     });
-
-//     updateFormula(); // Initial update to show default value
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
     const inputs = document.querySelectorAll("input");
     const resultElement = document.getElementById("formulaResult");
@@ -38,8 +13,9 @@ document.addEventListener("DOMContentLoaded", function () {
         let costInput = document.getElementById("cost").value.trim(); // Raw input
         let cost = parseFloat(costInput);
 
-        // Check if any input is missing or invalid
-        if (isNaN(fee) || isNaN(count) || isNaN(discount) || isNaN(taxRate) || fee < 0 || count < 0 || discount < 0 || taxRate < 0) {
+        // Validate inputs (no negatives)
+        if (isNaN(fee) || isNaN(count) || isNaN(discount) || isNaN(taxRate) ||
+            fee < 0 || count < 0 || discount < 0 || taxRate < 0 || taxRate > 100) {
             resultElement.textContent = "N/A";
             avgPriceElement.textContent = "N/A";
             profitElement.textContent = "N/A";
@@ -68,12 +44,19 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Prevent users from entering negative numbers in input fields
+    // Input event listeners
     inputs.forEach(input => {
         input.addEventListener("input", function () {
+            // Prevent negative numbers
             if (parseFloat(this.value) < 0) {
-                this.value = ""; // Clear input if negative value is entered
+                this.value = "";
             }
+
+            // Ensure tax does not exceed 100%
+            if (this.id === "tax" && parseFloat(this.value) > 100) {
+                this.value = "100";
+            }
+
             updateFormula();
         });
     });
