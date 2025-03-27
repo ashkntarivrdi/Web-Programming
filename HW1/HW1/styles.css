@@ -1,0 +1,78 @@
+
+/* Color Palette */
+:root {
+    --antiflash-white: #eef0f2;
+    --silver: #c6c7c4;
+    --rose-quartz: #a2999e;
+    --rose-taupe: #846a6a;
+    --onyx: #353b3c;
+}
+
+/* General Page Styling */
+body {
+    font-family: "Arial", sans-serif;
+    text-align: center;
+    direction: rtl;
+    margin: 0;
+    padding: 20px;
+    background: radial-gradient(circle, var(--antiflash-white), var(--silver));
+    color: var(--onyx);
+}
+
+/* Page Title */
+h2 {
+    color: var(--rose-taupe);
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+/* Input Styling */
+input {
+    display: block;
+    margin: 12px auto;
+    padding: 10px;
+    font-size: 16px;
+    width: 220px;
+    border: 2px solid var(--rose-quartz);
+    border-radius: 6px;
+    background: var(--antiflash-white);
+    transition: all 0.3s ease-in-out;
+}
+
+input:focus {
+    border-color: var(--rose-taupe);
+    outline: none;
+    box-shadow: 0px 0px 8px var(--rose-quartz);
+}
+
+/* Formula Box Styling */
+.formula-box {
+    margin: 20px auto; /* Increase spacing between boxes */
+    font-size: 18px;
+    font-weight: bold;
+    color: var(--onyx);
+    background: var(--rose-quartz);
+    border: 2px solid var(--rose-taupe);
+    padding: 12px;
+    width: 240px;
+    border-radius: 8px;
+    display: inline-block;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s ease-in-out;
+}
+
+.formula-box:hover {
+    transform: scale(1.015);
+}
+
+/* Read-Only Result Styling */
+#formulaResult,
+#profitResult,
+#avgPriceResult {
+    display: block;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+    color: var(--antiflash-white);
+}
